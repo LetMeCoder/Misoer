@@ -509,6 +509,12 @@ open class Element: Node {
         
         guard !classAttr.isEmpty && classAttr.unicodeScalars.count >= className.unicodeScalars.count else { return false }
         
+        if classAttr.lowercased()
+            .normalizedWhitespace(stripLeading: true)
+            .trimmingCharacters(in: .whitespaces)
+            .contains(className.lowercased()) {
+            return true
+        }
         return classAttr.lowercased()
             .normalizedWhitespace(stripLeading: true)
             .trimmingCharacters(in: .whitespaces)
