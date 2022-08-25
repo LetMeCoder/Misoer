@@ -9,11 +9,4 @@ target ‘Miso’ do
 
   # Pods for Miso
 
-  target ‘MisoTests’ do
-    inherit! :search_paths
-    # Pods for testing
-    pod 'EnvoyAmbassador', '~> 4.0'
-    pod 'Embassy', '~> 4.0'
-  end
-
 end
