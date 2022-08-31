@@ -15,7 +15,11 @@ open class Selector {
     private init(query: String, root: Element) {
         let query = query.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        self.evaluator = try! QueryParser.parse(query: query)
+        do {
+            self.evaluator = try QueryParser.parse(query: query)
+        } catch {
+            self.evaluator = try! QueryParser.parse(query: "")
+        }
         self.root = root
     }
     

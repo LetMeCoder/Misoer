@@ -19,8 +19,11 @@ class XPathSelector {
     
     private init(xpath: String, root: Node) {
         let query = xpath.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        self.evaluators = try! XPathParser.parse(query: query)
+        do {
+            self.evaluators = try XPathParser.parse(query: query)
+        } catch {
+            self.evaluators = try! XPathParser.parse(query: "")
+        }
         self.root = root
     }
     
