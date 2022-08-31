@@ -19,11 +19,11 @@ class XPathSelector {
     
     private init(xpath: String, root: Node) {
         let query = xpath.trimmingCharacters(in: .whitespacesAndNewlines)
-        do {
-            self.evaluators = try XPathParser.parse(query: query)
-        } catch {
-            self.evaluators = try! XPathParser.parse(query: "")
-        }
+            .replaceFirst(regex: "\\@xpath:", by: "")
+            .replaceFirst(regex: "\\@path:", by: "")
+            .replaceFirst(regex: "\\@", by: "")
+        
+        self.evaluators = try! XPathParser.parse(query: query)
         self.root = root
     }
     

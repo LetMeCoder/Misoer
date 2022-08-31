@@ -14,12 +14,10 @@ open class Selector {
     
     private init(query: String, root: Element) {
         let query = query.trimmingCharacters(in: .whitespacesAndNewlines)
+            .replaceFirst(regex: "\\@css:", by: "")
+            .replaceFirst(regex: "\\@", by: "")
         
-        do {
-            self.evaluator = try QueryParser.parse(query: query)
-        } catch {
-            self.evaluator = try! QueryParser.parse(query: "")
-        }
+        self.evaluator = try! QueryParser.parse(query: query)
         self.root = root
     }
     
